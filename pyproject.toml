@@ -1,0 +1,26 @@
+[project]
+name = "add-private-ppa"
+version = "0.1.0"
+description = "Add a private PPA."
+authors = [
+    { name="Felipe Reyes", email="felipe.reyes@canonical.com" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+license =  "GPL-2.0-only"
+dependencies = [
+    "launchpadlib",
+    "click",
+    "distro",
+]
+
+[project.optional-dependencies]
+dev = [
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+add-private-ppa = "add_private_ppa:main"
