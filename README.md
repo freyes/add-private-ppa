@@ -11,7 +11,7 @@ pipx install git+https://github.com/freyes/add-private-ppa.git
 ### Snap
 
 ``` sh
-sudo snap install add-private-ppa
+sudo snap install --channel edge add-private-ppa
 sudo snap connect add-private-ppa:password-manager-service
 ```
 
