@@ -1,0 +1,22 @@
+name: add-private-ppa
+base: core24
+version: '0.1.0'
+summary: Add a private PPA
+description: |
+  Generate the sources file for a private PPA.
+
+grade: stable
+confinement: strict
+
+apps:
+  add-private-ppa:
+    command: ./bin/add-private-ppa
+    plugs:
+      - home
+      - network
+      - password-manager-service
+
+parts:
+  add-private-ppa:
+    plugin: python
+    source: ./

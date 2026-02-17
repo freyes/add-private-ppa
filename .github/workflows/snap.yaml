@@ -1,0 +1,25 @@
+name: Build and Publish Snap
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: canonical/action-build@v1
+        id: build-snap
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: snap
+          path: ${{ steps.build-snap.outputs.snap }}
+      - name: Publish snap
+        uses: canonical/action-publish@v1
+        env:
+          SNAPSTORE_LOGIN: ${{ secrets.SNAPSTORE_LOGIN}}
+
+        if: ${{ env.SNAPSTORE_LOGIN != '' }}
+        with:
+          snap: ${{ steps.build-snap.outputs.snap }}
+          store-login: ${{ secrets.SNAPSTORE_LOGIN }}
