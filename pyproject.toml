@@ -22,5 +22,8 @@ dev = [
 requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools]
+py-modules = [ "add_private_ppa" ]
+
 [project.scripts]
 add-private-ppa = "add_private_ppa:main"
