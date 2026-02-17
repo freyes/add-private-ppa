@@ -14,12 +14,16 @@ jobs:
         with:
           name: snap
           path: ${{ steps.build-snap.outputs.snap }}
+      - run: |
+          sudo snap install --dangerous ${{ steps.build-snap.outputs.snap }}
+          sudo snap connect add-private-ppa:password-manager-service
+          add-private-ppa --help
       - name: Publish snap
         uses: canonical/action-publish@v1
         env:
-          SNAPSTORE_LOGIN: ${{ secrets.SNAPSTORE_LOGIN}}
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPSTORE_LOGIN}}
 
-        if: ${{ env.SNAPSTORE_LOGIN != '' }}
+        if: ${{ env.SNAPCRAFT_STORE_CREDENTIALS != '' }}
         with:
           snap: ${{ steps.build-snap.outputs.snap }}
-          store-login: ${{ secrets.SNAPSTORE_LOGIN }}
+          release: edge
